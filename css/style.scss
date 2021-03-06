@@ -1,0 +1,343 @@
+@charset "UTF-8";
+
+@import "reset";
+@import "config";
+
+.noscroll{
+	overflow: hidden;
+  }
+
+/*------------------------
+ヘッダー
+------------------------*/
+.header {
+  padding: 20px 0;
+  background-color: $color-black;
+  border-bottom: 2px solid $color-white;
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 15px;
+  }
+}
+.logo {
+  font-size: 2.6rem;
+  font-weight: bold;
+  color: $color-white;
+  line-height: 1.3;
+}
+.nav {
+  &__list {
+    display: flex;
+    & .nav__item:last-child {
+      margin-right: 0;
+    }
+    @include mb {
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 3;
+      width: 100vw;
+      height: 100vh;
+      background-color: $color-black;
+      transition: .3s;
+      opacity: 0;
+    }
+  }
+  &__item {
+    margin-right: 55px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: $color-white;
+    line-height: 1.3;
+    @include mb {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-right: 0;
+      margin-bottom: 50px;
+      text-align: center;
+      line-height: 2;
+      color: $color-white;
+    }
+  }
+}
+.nav__list.is-active {
+    opacity: 1;
+}
+//ハンバーガー
+.nav-btn {
+  display: none;
+  @include mb {
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    z-index: 5;
+  }
+  &__bar {
+    @include mb {
+      width: 30px;
+      height: 1px;
+      display: block;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: .5s;
+      background-color: $color-white;
+    }
+  }
+  &__top {
+    @include mb {
+      top: 10px;
+    }
+  }
+  &__mid {
+    @include mb {
+      top: 50%;
+    }
+  }
+  &__bottom {
+    @include mb {
+      bottom: 10px;
+    }
+  }
+}
+.nav-btn.close .nav-btn__top {
+  @include mb {
+    transform: translate(-50%, 10px) rotate(45deg);
+    transition: .3s;
+  }
+}
+.nav-btn.close .nav-btn__mid {
+  @include mb {
+    opacity: 0;
+    transition: .3s;
+  }
+}
+.nav-btn.close .nav-btn__bottom {
+  @include mb {
+    transform: translate(-50%, -8px) rotate(-45deg);
+    transition: .3s;
+  }
+}
+
+/*------------------------
+メイン
+------------------------*/
+// ファーストビュー
+.fv {
+  position: relative;
+  height: 90vh;
+  background-image: url(../img/fv-bgi3.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  &__title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    padding: 35px 42px;
+    font-size: 5rem;
+    color: $color-black;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    border: 2px solid $color-black;
+    @include mb {
+    font-size: 3rem;
+    }
+  }
+}
+
+// 各セクション共通
+.section {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 100px 15px 50px ;
+  &__title {
+    margin-bottom: 70px;
+    text-align: center;
+    font-size: 3.6rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    line-height: 0.6;
+  }
+}
+
+//About
+.section {
+  &__sub-title {
+    margin-bottom: 42px;
+    font-family: "Noto Sans CJK JP";
+    font-size: 2.4rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    line-height: 2;
+    @include mb {
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+  }
+  &__text {
+    font-family: "Noto Sans CJK JP";
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    line-height: 2;
+  }
+}
+
+//media
+.media {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 50px;
+  @include mb {
+    flex-direction: column;
+  }
+  &__img {
+    max-width: 480px;
+    @include mb {
+      margin-top: 40px;
+    }
+  }
+  &__body {
+    max-width: 480px;
+  }
+  &__title {
+    margin-bottom: 42px;
+    font-size: 2.4rem;
+    font-weight: bold;
+    letter-spacing: 0.01em;
+    line-height: 2;
+    @include mb {
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+  }
+  &__text {
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    line-height: 2;
+  }
+  &--reverse {
+    flex-direction: row-reverse;
+    @include mb {
+      flex-direction: column;
+    }
+  }
+}
+.section .media:last-of-type {
+  margin-bottom: 0;//最後のmediaの下の余白を打消し
+}
+
+//card
+.card {
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include mb {
+      flex-direction: column;
+    }
+  }
+  &__item {
+    margin-right: 10px;
+    max-width: 320px;
+    box-shadow: 0 0 6px rgba(27, 19, 16, .4);
+    @include mb {
+      margin-top: 50px;
+      margin-right: 0;
+    }
+  }
+  &__text {
+    padding: 25px 32px;
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    line-height: 2;
+    font-family: "Hiragino Kaku Gothic ProN";
+  }
+}
+.card__list .card__item:last-of-type {
+  margin-right: 0px;
+}
+
+//contact
+.form-title {
+  margin-bottom: 70px;
+  font-family: "Noto Sans CJK JP";
+  text-align: center;
+  font-size: 2.4rem;
+  letter-spacing: 0.1em;
+  line-height: 2;
+  font-weight: bold;
+}
+.form {
+  margin: 0 auto;
+  max-width: 700px;
+  &__block {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  &__label {
+    font-family: "Hiragino Kaku Gothic ProN";
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+    line-height: 2;
+  }
+  &__text {
+    height: 30px;
+    font-size: 1.6rem;
+    border: 1px solid $color-text;
+  }
+  &__detail {
+    font-size: 1.6rem;
+    border: 1px solid $color-text;
+  }
+  &__btn {
+    display: block;
+    margin: 0 auto;
+    padding: 16px 0;
+    width: 235px;
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+    color: $color-white;
+    font-weight: bold;
+    background-color: $color-black;
+    border-radius: 30px;
+    box-shadow: 0 0 6px rgba(27, 19, 16, 1);
+    text-align: center;
+  }
+  & .form__block:last-of-type {
+    margin-bottom: 50px;
+  }
+}
+  
+  /*------------------------
+  フッター
+  ------------------------*/
+  .footer {
+    padding: 30px 0;
+    background-color: $color-black;
+  &__text {
+    display: block;
+    text-align: center;
+    font-size: 1.4rem;
+    color: $color-white;
+    letter-spacing: 0.05em;
+    line-height: 2;
+  }
+}
